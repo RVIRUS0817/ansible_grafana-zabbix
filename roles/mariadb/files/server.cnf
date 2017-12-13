@@ -1,0 +1,18 @@
+[mysqld]
+datadir=/var/lib/mysql
+socket=/var/lib/mysql/mysql.sock
+symbolic-links=0
+
+log-error=/var/log/mysqld.log
+pid-file=/var/run/mysqld/mysqld.pid
+
+character-set-server = utf8
+collation-server     = utf8_bin
+skip-character-set-client-handshake
+default_password_lifetime = 0
+
+innodb_data_file_path=ibdata1:10M:autoextend
+innodb_buffer_pool_size=768M
+innodb_log_file_size=384M
+innodb_file_per_table
+

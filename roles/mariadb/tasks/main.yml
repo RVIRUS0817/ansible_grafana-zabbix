@@ -1,0 +1,21 @@
+- name: install mariadb
+  yum: name={{ item }} state=installed 
+  with_items:
+    - mariadb
+    - mariadb-devel
+    - mariadb-server
+
+- name: systemd start mariadb
+  systemd: name=mariadb state=started enabled=yes
+
+- name: copy mariadb config
+  copy:
+    src: "roles/mariadb/files/{{ item.src }}"
+    dest: "/etc/{{ item.dest }}"
+    owner: root
+    group: root
+    backup: no
+    mode: 644
+  with_items:
+    - { src: server.cnf, dest: . }
+  notify: restart mariadb

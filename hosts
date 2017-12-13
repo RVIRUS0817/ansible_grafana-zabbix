@@ -1,0 +1,6 @@
+[web]
+web01 #xxx.xxxx.xxxx.xxx
+
+#group
+[prd:children]
+web

@@ -1,0 +1,9 @@
+##=====COMMON=====##
+server_hostname: "{{ inventory_hostname }}"
+
+##=====REPOSITORIES=====##
+#php
+PHP_VERSION_REMI: "https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm"
+PHP_VERSION_EPEL: "http://rpms.famillecollet.com/enterprise/remi-release-7.rpm"
+
+

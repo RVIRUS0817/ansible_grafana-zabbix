@@ -1,0 +1,9 @@
+- hosts: web01
+  become: yes
+  roles:
+    - common
+    - h2o
+    - mariadb
+    - php
+    - zabbix-agent
+    - zabbix-server

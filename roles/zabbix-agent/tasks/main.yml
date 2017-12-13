@@ -1,0 +1,43 @@
+- name: copy zabbix.repo
+  copy:
+    src: roles/zabbix-agent/files/yum.repos.d/{{ item.src }}
+    dest: /etc/yum.repos.d/{{ item.dest }}
+    backup: no
+    owner: root
+    group: root
+    mode: 0644
+  with_items:
+    - { src: zabbix.repo, dest: . }
+
+- name: install zabbix-agent
+  yum: name={{ item }} state=present disable_gpg_check=yes
+  with_items:
+    - zabbix-agent
+
+- name: start zabbix-agent
+  systemd: name=zabbix-agent enabled=yes state=started
+
+- name: template copy zabbix_agentd.conf
+  template:
+    src: roles/zabbix-agent/templates/{{ item.src }}
+    dest: /etc/zabbix/{{ item.dest }}
+    backup: no
+    owner: root
+    group: root
+    mode: 0644
+  with_items:
+    - { src: zabbix_agentd.conf, dest: . }
+    - { src: zabbix_agentd.d/userparameter_mysql.conf, dest: . }
+
+- name: copy web,mysql
+  copy:
+    src: "roles/zabbix-agent/files/{{ item.src }}"
+    dest: "/etc/zabbix"
+    backup: no
+    owner: root
+    group: root
+    mode: 0755
+  with_items:
+    - { src: mysql }
+    - { src: web }
+  notify: restart zabbix-agent

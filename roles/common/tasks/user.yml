@@ -1,0 +1,27 @@
+- name: create user
+  user:
+    name: "{{ item.name }}"
+    createhome: yes
+    password: "{{ item.password | password_hash('sha512') }}"
+    shell: "{{ item.shell }}"
+    groups: nobody
+    state: "{{ item.state }}"
+    remove: "{{ item.remove }}"
+  with_items:
+  - { shell: '/bin/zsh', state: 'present', remove: 'no', name: 'adachin', password: 'adachinpw' }
+
+
+- name: add sudoers
+  lineinfile:
+    path: /etc/sudoers
+    state: present
+    regexp: "{{ item.match }}"
+    line: "{{ item.line }}"
+  with_items:
+  - { match: 'adachin', line: 'adachin ALL=(ALL) NOPASSWD: ALL' }
+
+- name: authorized_key for user adachin
+  authorized_key:
+    user: adachin
+    key: "ssh-rsa  xxxxxxxxxxxxxxxxxxxxxxxxxx"
+
