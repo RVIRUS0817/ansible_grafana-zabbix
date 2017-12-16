@@ -1,0 +1,9 @@
+- name: install letsencrypt
+  become_user: root
+  shell: git clone https://github.com/letsencrypt/letsencrypt /etc/
+  ignore_errors: yes
+
+- name: get letsencrypt
+  become_user: root
+  shell:  /etc/letsencrypt/letsencrypt-auto certonly --standalone -d zabbix3.adachin.com --agree-tos
+  ignore_errors: yes

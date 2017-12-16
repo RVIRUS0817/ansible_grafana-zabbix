@@ -7,3 +7,4 @@
     - php
     - zabbix-agent
     - zabbix-server
+    - letsencrypt
