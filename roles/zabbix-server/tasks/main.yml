@@ -45,4 +45,17 @@
     mode: 0755 
   with_items:
     - { src: slack.sh, dest: . }
+
+  copy:
+    src: "roles/zabbix-server/files/externalscripts/{{ item.src }}"
+    dest: "/usr/lib/zabbix/externalscripts/{{ item.dest }}"
+    backup: no
+    owner: root
+    group: root
+    mode: 0755
+  with_items:
+    - { src: ssl-cert-check, dest: . }
+    - { src: ssl-cert-check.sh, dest: . }
+    - { src: timeout, dest: . }
   notify: restart zabbix-server
+
