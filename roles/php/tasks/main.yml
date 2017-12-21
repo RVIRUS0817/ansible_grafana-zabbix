@@ -8,6 +8,7 @@
   yum: name={{ item }} state=present enablerepo=remi,remi-php71
   with_items:
     - php
+    - php-fpm
     - php-gd
     - php-bcmath
     - php-mbstring
@@ -25,3 +26,14 @@
     mode: 0755
   with_items:
     - { src: "php.ini", dest: . }
+
+- name: copy php-fpm www.conf
+  copy:
+    src: "roles/php/files/{{ item.src }}"
+    dest: "/etc/php-fpm.d/{{ item.dest }}"
+    backup: no
+    owner: root
+    group: root
+    mode: 0755
+  with_items:
+    - { src: "www.conf", dest: . }
