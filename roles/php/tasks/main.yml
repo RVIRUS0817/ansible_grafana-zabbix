@@ -23,7 +23,7 @@
     backup: no
     owner: root
     group: root
-    mode: 0755
+    mode: 0644
   with_items:
     - { src: "php.ini", dest: . }
 
@@ -34,6 +34,6 @@
     backup: no
     owner: root
     group: root
-    mode: 0755
+    mode: 0644
   with_items:
     - { src: "www.conf", dest: . }
