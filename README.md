@@ -1,7 +1,7 @@
 ansibleでZabbix-server3.0.13の環境セットアップ
 
-# 環境
-・CentOS7  
+# Environment
+・CentOS7 2core 3GB   
 ・zabbix-server-3.0.13  
 ・php7.1  
 ・h2o 2.2.4  
@@ -16,14 +16,14 @@ $ ansible-playbook -i hosts zabbix3.yml --ask-sudo-pass --check
 ````
 $ ansible-playbook -i hosts zabbix3.yml --ask-sudo-pass
 ````
-## 3.DBの設定
-・MariaDB初期設定
+## 3.DB setting
+・MariaDB
 
 ````
 $ mysql_secure_installation
-全部Y
+Y
 ````
-・DB作成と権限
+・create DB and user
 
 ````
 $ mysql -u root -p
@@ -31,13 +31,13 @@ $ mysql -u root -p
 > grant all privileges on zabbix3.* to zabbix3@localhost identified by 'adachinpo' ;
 ````
 
-・初期データ投入
+・first data in DB
 
 ````
 $ zcat /usr/share/doc/zabbix-server-mysql-3.0.0/zabbix-server-mysql-3.0.13 |mysql -u zabbix3 -padachinpo -D zabbix3
 ````
 
-## 4.zabbix_server.confに追記
+## 4.zabbix_server.conf
 
 ````
 DBName=zabbix3
