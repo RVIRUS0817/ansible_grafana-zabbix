@@ -1,5 +1,3 @@
-ansibleでZabbix-server3.0.13の環境セットアップ
-
 # Environment
 ・CentOS7 2core 3GB   
 ・zabbix-server-3.0.13  
