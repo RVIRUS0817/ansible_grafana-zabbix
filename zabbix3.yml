@@ -1,5 +1,5 @@
 - hosts: web01
-  become: yes
+  become: true
   roles:
     - common
     - h2o
