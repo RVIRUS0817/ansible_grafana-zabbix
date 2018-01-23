@@ -1,0 +1,35 @@
+- name: yum install fontconfig
+  yum: name={{ item }} state=installed
+  with_items:
+    - fontconfig
+
+- name: Download grafana-4.6.3-1
+  get_url:
+    url: https://s3-us-west-2.amazonaws.com/grafana-releases/release/grafana-4.6.3-1.x86_64.rpm
+    dest: /usr/local/bin
+    mode: 0644
+
+- name: yum localinstall grafana-4.6.3-1.x86_64.rpm
+  become_user: root
+  shell: yum localinstall /usr/local/bin/grafana-4.6.3-1.x86_64.rpm
+  ignore_errors: yes
+
+- name: systemd start grafana-server
+  systemd: name=grafana-server enabled=yes state=started
+
+- name: grafana-cli plugins install alexanderzobnin-zabbix-app
+  become_user: root
+  shell: grafana-cli plugins install alexanderzobnin-zabbix-app
+  ignore_errors: yes
+
+- name: copy grafana.ini
+  copy:
+    src: "roles/grafana-server/files/{{ item.src }}"
+    dest: "/etc/grafana/"
+    backup: no
+    owner: root
+    group: root
+    mode: 0644
+  with_items:
+    - { src: grafana.ini }
+  notify: restart grafana-server

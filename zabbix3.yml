@@ -7,4 +7,5 @@
     - php
     - zabbix-agent
     - zabbix-server
+    - grafana-server
     - letsencrypt

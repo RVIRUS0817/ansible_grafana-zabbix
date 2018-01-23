@@ -3,9 +3,14 @@
 ## Environment
 ・CentOS7 2core 3GB   
 ・zabbix-server-3.0.13  
+・grafana-server-4.6.3  
 ・php7.1  
 ・h2o 2.2.4  
 ・MariaDB 10.2
+
+## Used  
+
+I encourage zabbix to work with Grafana. Let zabbix be host registration only and see the graph at Grafana.  
 
 ## 1.dry-run
 ````
@@ -44,3 +49,7 @@ DBName=zabbix3
 DBUser=zabbix3
 DBPassword=adachinpo
 ````
+
+## 4.Grafana-Zabbix  
+
+https://blog.adachin.me/wordpress/archives/7249  
