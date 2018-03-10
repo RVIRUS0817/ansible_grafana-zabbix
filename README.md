@@ -14,12 +14,12 @@ I encourage zabbix to work with Grafana. Let zabbix be host registration only an
 
 ## 1.dry-run
 ````
-$ ansible-playbook -i hosts zabbix3.yml --ask-sudo-pass --check
+$ ansible-playbook -i hosts zabbix-web01.yml --ask-sudo-pass --check
 ````
 
 ## 2.run
 ````
-$ ansible-playbook -i hosts zabbix3.yml --ask-sudo-pass
+$ ansible-playbook -i hosts zabbix-web01.yml --ask-sudo-pass
 ````
 ## 3.DB setting
 ・MariaDB
