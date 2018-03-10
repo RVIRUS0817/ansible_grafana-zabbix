@@ -1,11 +1,15 @@
-- hosts: web01
+- hosts: all
   become: true
   roles:
     - common
+    - zabbix-agent
+
+- hosts: web01
+  become: true
+  roles:
     - h2o
     - mariadb
     - php
-    - zabbix-agent
     - zabbix-server
     - grafana-server
     - letsencrypt
