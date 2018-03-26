@@ -1,5 +1,7 @@
 # ansible_grafana-zabbix   
 
+![grafana-zabbix-dashboard](https://user-images.githubusercontent.com/5633085/37887084-9d90d62c-30fa-11e8-96a3-e04a264e2888.jpg)
+
 ## Environment
 ・CentOS7 2core 3GB   
 ・zabbix-server-3.0.13  
